@@ -18,7 +18,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
 
 
-<h3 id="Window-环境下"><a href="#Window-环境下" class="headerlink" title="Window 环境下"></a>Window 环境下</h3><p>若为 window 环境，则需要安装 gitbash 。<br>云盘下载：<a href="https://www.lanzous.com/ib76nif" target="_blank" rel="noopener" title="https://www.lanzous.com/ib76nif">https://www.lanzous.com/ib76nif</a><br>安装时一直点击 next 安装完成即可。<br>安装完成后，随便点击一个文件目录空白处右键，之后点击 Git Bash Here 。<br><img src="../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/1.png" alt=""></p>
+<h3 id="Window-环境下"><a href="#Window-环境下" class="headerlink" title="Window 环境下"></a>Window 环境下</h3><p>若为 window 环境，则需要安装 gitbash 。<br>云盘下载：<a href="https://www.lanzous.com/ib76nif" target="_blank" rel="noopener" title="https://www.lanzous.com/ib76nif">https://www.lanzous.com/ib76nif</a><br>安装时一直点击 next 安装完成即可。<br>安装完成后，随便点击一个文件目录空白处右键，之后点击 Git Bash Here 。<br><img src="../../../../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/1.png" alt=""></p>
 <p>之后这个黑窗口就可以充当 linux 的终端来进行下面的步骤了。</p>
 <hr>
 <h2 id="生成-SSH-密钥对"><a href="#生成-SSH-密钥对" class="headerlink" title="生成 SSH 密钥对"></a>生成 SSH 密钥对</h2><p>一般在用户的根目录下来生成密钥对，则先进入用户根目录。</p>
@@ -54,13 +54,13 @@
 <p>或者通过命令创建文件夹，这里创建一个 test 文件夹并进入。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd .&#x2F;test</span><br></pre></td></tr></table></figure>
 
-<p><img src="../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/2.png" alt=""></p>
+<p><img src="../../../../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/2.png" alt=""></p>
 <p>在当前文件夹下创建本地 git 仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 
 <p>.git 也是隐藏文件夹，在任务管理器中显示隐藏文件夹或使用 <code>ls -a</code> 可看见。在下面提交文件到本地仓库的时候，文件即会存放到这个文件夹当中。</p>
 <p>假如我们要把当前文件夹中的一个文件 test.txt 上传到华为云仓库中。</p>
-<p><img src="../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/3.png" alt=""></p>
+<p><img src="../../../../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/3.png" alt=""></p>
 <p>先要获取这个仓库的 ssh 地址：点击某个华为云仓库，在 “克隆/下载” 那标有该仓库的 ssh 地址。</p>
 <p>之后用 git 命令，在当前本地仓库中，将这个地址起一个 “别名” ，这个别名即对应着该仓库。比如这里的别名为 origin</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin xxxxxxxxx</span><br></pre></td></tr></table></figure>
@@ -73,11 +73,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;本次提交的备注&quot;</span><br></pre></td></tr></table></figure>
 
 <p>此时应该会报错，提示需要告诉本地仓库自己的邮箱和名字是什么。</p>
-<p><img src="../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/4.png" alt=""></p>
+<p><img src="../../../../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/4.png" alt=""></p>
 <p>所以按照提示，先设置自己的邮箱名以及名字，设置完之后再 <code>git commit</code> 即可。注意空格。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;名字&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br><span class="line">git commit -m &quot;test&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/5.png" alt=""></p>
+<p><img src="../../../../img/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/5.png" alt=""></p>
 <p>我们可以看到，一个文件已经成功导入到本地仓库了~</p>
 <p>最后我们还差一步，就是将本地仓库与远程仓库连接，然后同步文件就 OK 了。</p>
 <p>之前我们将 远程仓库 起了个别名，叫 origin 。</p>
