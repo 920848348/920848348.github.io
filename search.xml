@@ -4,18 +4,31 @@
   
     
     <entry>
+      <title>EL表达式</title>
+      <link href="/2020/04/14/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <url>/2020/04/14/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Listener监听器</title>
       <link href="/2020/04/14/Listener%E7%9B%91%E5%90%AC%E5%99%A8/"/>
       <url>/2020/04/14/Listener%E7%9B%91%E5%90%AC%E5%99%A8/</url>
       
-        <content type="html"><![CDATA[<font size=4><h2 id="Listener-监听器简介"><a href="#Listener-监听器简介" class="headerlink" title="Listener 监听器简介"></a>Listener 监听器简介</h2><p>1、$Listener$ 监听器它是 $JavaWeb$ 的三大组件之一。 $JavaWeb$ 的三大组件是：$Servlet$ 程序，$Filter$ 过滤器、$Listener$ 监听器。</p><p>2、$Listener$ 它是 $JavaEE$ 的规范，就是接口。</p><p>3、监听器的作用是：监听某种事物的变化，然后拖过回调函数，反馈给客户（程序）去做一些相应的处理。</p><h2 id="ServletContextListener-监听器"><a href="#ServletContextListener-监听器" class="headerlink" title="ServletContextListener 监听器"></a>ServletContextListener 监听器</h2><p>$ServletContextListener$ 它可以监听 $ServletContext$ 对象的创建和销毁。</p><p>$ServletContext$ 对象在 $web$ 工程启动的时候创建，在 $web$ 工程停止的时候销毁。</p><p>监听到创建和销毁之后都会分别调用 $ServletContextListener$ 监听器的方法反馈。</p><p>使用步骤：</p><p>1、创建一个类去实现 $ServletContextListener$ 接口。</p><p>2、重写其中的两个回调方法。</p><p>3、到 $web.xml$ 中去配置监听器。</p><h2 id="EL-表达式中九大内置对象"><a href="#EL-表达式中九大内置对象" class="headerlink" title="EL 表达式中九大内置对象"></a>EL 表达式中九大内置对象</h2><table><thead><tr><th align="center">变量</th><th align="center">类型</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">$pageContext$</td><td align="center">$PageContextImpl$</td><td align="center">它可以获取 $jsp$ 中的九大内置对象</td></tr><tr><td align="center">$pageScope$</td><td align="center">$Map&lt;String,Object&gt;$</td><td align="center">它可以获取 $pageContext$ 域中的数据</td></tr><tr><td align="center">$sessionScope$</td><td align="center">$Map&lt;String,Object&gt;$</td><td align="center">它可以获取 $Sesion$ 域中的数据</td></tr><tr><td align="center">$applicationScope$</td><td align="center">$Map&lt;String,Object&gt;$</td><td align="center">它可以获取 $ServletContext$ 域中的数据</td></tr><tr><td align="center">$param$</td><td align="center">$Map&lt;String,String&gt;$</td><td align="center">它可以获取请求参数的值</td></tr><tr><td align="center">$paramValues$</td><td align="center">$Map&lt;String,String[]&gt;$</td><td align="center">它可以获取请求参数的值的数组</td></tr><tr><td align="center">$header$</td><td align="center">$Map&lt;String,String&gt;$</td><td align="center">它可以获取请求头的信息</td></tr><tr><td align="center">$headValues$</td><td align="center">$Map&lt;String,String[]&gt;$</td><td align="center">获取请求头信息的数组</td></tr><tr><td align="center">$cookie$</td><td align="center">$Map&lt;String,Cookie&gt;$</td><td align="center">它可以获取当前请求的 $Cookie$ 信息</td></tr><tr><td align="center">$initParam$</td><td align="center">$Map&lt;String,String&gt;$</td><td align="center">它可以获取在 $web.xml$ 文档中声明的 $<context-param>$  键值对</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<font size=4><h2 id="Listener-监听器简介"><a href="#Listener-监听器简介" class="headerlink" title="Listener 监听器简介"></a>Listener 监听器简介</h2><p>1、$Listener$ 监听器它是 $JavaWeb$ 的三大组件之一。 $JavaWeb$ 的三大组件是：$Servlet$ 程序，$Filter$ 过滤器、$Listener$ 监听器。</p><p>2、$Listener$ 它是 $JavaEE$ 的规范，就是接口。</p><p>3、监听器的作用是：监听某种事物的变化，然后拖过回调函数，反馈给客户（程序）去做一些相应的处理。</p><h2 id="ServletContextListener-监听器"><a href="#ServletContextListener-监听器" class="headerlink" title="ServletContextListener 监听器"></a>ServletContextListener 监听器</h2><p>$ServletContextListener$ 它可以监听 $ServletContext$ 对象的创建和销毁。</p><p>$ServletContext$ 对象在 $web$ 工程启动的时候创建，在 $web$ 工程停止的时候销毁。</p><p>监听到创建和销毁之后都会分别调用 $ServletContextListener$ 监听器的方法反馈。</p><p>使用步骤：</p><p>1、创建一个类去实现 $ServletContextListener$ 接口。</p><p>2、重写其中的两个回调方法。</p><p>3、到 $web.xml$ 中去配置监听器。</p>]]></content>
       
       
       <categories>
           
           <category> java </category>
           
-          <category> web </category>
+          <category> JavaWeb </category>
           
       </categories>
       
