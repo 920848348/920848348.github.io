@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>BeanUtils工具类注入方法</title>
+      <link href="/2020/04/16/BeanUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95/"/>
+      <url>/2020/04/16/BeanUtils%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%B3%A8%E5%85%A5%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<font size=4><h2 id="数据的封装和抽取—BeanUtils-工具类"><a href="#数据的封装和抽取—BeanUtils-工具类" class="headerlink" title="数据的封装和抽取—BeanUtils 工具类"></a>数据的封装和抽取—BeanUtils 工具类</h2><p>BeanUtils 工具类，它可以一次性的把所有请求的参数注入到 JavaBean 中。</p><p>需要导入两个包：</p><p>commons-beanutils.jar 以及 commons-logging.jar</p><p>它会根据已有的类，搜索属性对应的 set 方法，来进行对实例该属性的设置。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanUtils.populate(bean,map); &#x2F;&#x2F;将 map 中的键值依次注入到 bean 类的属性中</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebUtils</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">copyParamToBean</span><span class="params">(Map map, T bean)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            BeanUtils.populate(bean,map);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> JavaWeb </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>文件上传与下载</title>
       <link href="/2020/04/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/"/>
       <url>/2020/04/15/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/</url>
