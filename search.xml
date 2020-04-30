@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>SSM整合</title>
+      <link href="/2020/04/30/SSM%E6%95%B4%E5%90%88/"/>
+      <url>/2020/04/30/SSM%E6%95%B4%E5%90%88/</url>
+      
+        <content type="html"><![CDATA[<font size=4><h2 id="Spring与Mybatis整合的优化"><a href="#Spring与Mybatis整合的优化" class="headerlink" title="Spring与Mybatis整合的优化"></a>Spring与Mybatis整合的优化</h2><p>在之前，Mybatis通过配置文件中的 mapper 映射，在 SqlSessionFactory 创建好所有的 Mapper 所对应的实现类，然后我们可以通过 sqlSession 的 getMapper 去获取 SqlSessionFactory  里面的实现类，从而操作数据库。</p><p>但这样的话，如果 service 层需要去调用 mapper 层方法时，必须要获取 sqlSession 对象，通过 sqlSession 来获取 bookmapper (假设) ，从而调用对应方法。</p><p>首先，由于受 spring 的 IOC 容器接管， sqlSession  对象需要在 IOC 中创建，然后，bookServiceImpl  也需要在 IOC 中创建，并且在 bookServiceImpl 中 需要有 sqlSession 对象，然后在 配置文件中传入 sqlSession 对象，从而使得 bookServiceImpl  可以调用方法。</p><p>这样的坏处是，service 层获取了 sqlSession ，从而可以获取 SqlSessionFactory 中所有的mapper实现类，不仅仅局限于只能调用 bookMapper 的实现类，这样是不安全的。</p><p><strong>第一种方法：</strong> 按照之前的整合，需要在 mapper 层再创建一个 bookMapperImpl 去实现 bookMapper接口，即便在程序运行后，Mybatis 的 SqlSessionFactory 会创建好。</p><p>然后，给 bookMapperImpl 传入 SqlSession ，再调用对应方法。从而使 BookServiceImpl 只能调用 bookMapperImpl 而接触不到 SqlSession，以达到解耦、安全的状态。</p><p><strong>第二种方法：</strong> 首先要注意的是，bookMapper 的实现类，只存在于 SqlSessionFactory  中，只能通过</p><p>SqlSession 对象来获取，他并没有注册于 IOC 容器中，并没有由 spring 接管。在第一种方法中，spring的 IOC 容器中只会存在 bookMapperImpl 。</p><p>而 spring 提供了一种方法，可以使得 Mapper接口 在 Mybatis 创建其实现类在 SqlSessionFactory  后，自动创建这些 mapper接口的实现类于 IOC 容器中，且 id 为其接口名。</p><p>比如这里：bookMapper 接口的实现类在 Mybatis 创建在 SqlSessionFactory  中，我们可以通过 SqlSession 获取。同时，Spring 注册了一个 bean(id = bookMapper) ，其就是 bookMapper 接口的实现类，可以直接通过 spring 从 IOC 容器中获取。</p><p>这样的话，service 层的 bookServiceImpl 只需要传给他一个 bookMapper ，不需要 SqlSession 对象 就可以调用 mapper 层方法了。但是要注意的是，这个 bookMapper 接口的实现类，是在运行时才被创建的，也就是说，在 IOC 配置文件中，注册 bookServiceImpl 时并不能传入 bookMapper 接口的实现类，而导致空值错误。所以这种方法必须使用 @Autowird 来自动注入  bookMapper 接口的实现类给到 bookServiceImpl 。</p><p><strong>开启自动注入 mapper 接口实现类的两种方法：</strong></p><p><strong>1、在 spring 的 xml 中配置：</strong></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span>//开启自动注入</span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactoryBeanName"</span> <span class="attr">value</span>=<span class="string">"sqlSessionFactory"</span>/&gt;</span>//选中mapper接口实现类的factory</span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"cn.sonrisa.mapper"</span>/&gt;</span>//选中需要自动注入的mapper接口</span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure><p><strong>2、通过注解：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在configuration类上添加<span class="meta">@MapperScan</span>注解，告诉spring需要自动注入的接口的所在包名(必须是包名)</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"cn.sonrisa.mapper"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaEE </tag>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>spring-Mybatis整合</title>
       <link href="/2020/04/28/spring-Mybatis%E6%95%B4%E5%90%88/"/>
       <url>/2020/04/28/spring-Mybatis%E6%95%B4%E5%90%88/</url>
